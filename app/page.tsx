@@ -1,103 +1,165 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Navbar from "@/components/Navbar";
+import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Footer from "@/components/Footer";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [isExpanded, setIsExpanded] = useState(false);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsExpanded(entry.isIntersecting);
+      },
+      {
+        threshold: 0.25, // Trigger when 10% of the element is visible
+      },
+    );
+
+    if (triggerRef.current) {
+      observer.observe(triggerRef.current);
+    }
+
+    return () => {
+      if (triggerRef.current) {
+        observer.unobserve(triggerRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <div className="w-screen flex flex-col">
+      <div
+        className={`flex flex-col justify-between transition-all duration-700 ease-in-out ${
+          isExpanded ? "w-2/3" : "w-1/2"
+        }`}
+      >
+        <Navbar isExpanded={isExpanded} />
+        <div className="h-[100dvh] p-8 flex flex-col justify-between">
+          <div className="h-auto w-auto"></div>
+          <div className="flex flex-col justify-center items-start gap-8">
+            <h1 className="text-[52.75px] max-w-[447px] leading-[62px]">
+              Protecting Those Who Protect Us
+            </h1>
+            <Button>Donate</Button>
+          </div>
+          <div className="max-w-[400px] flex flex-col gap-[10px]">
+            <p className="text-[#707070] text-[14px] font-light">
+              // Nevada Operational Canine Medical Group
+            </p>
+            <p>
+              Nonprofit providing emergency medical training and equipment for
+              police, military, and SAR dogs injured in the line of duty.
+            </p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div className="min-h-[100dvh] p-8 flex flex-col justify-center">
+          <div className="flex flex-col gap-4">
+            <h1 className="max-w-[278px]">Why specialized K9 medical care?</h1>
+            <p className="max-w-[465px]">
+              Working dogs enable critical operations that save lives every
+              day—tracking suspects, detecting explosives, finding survivors—but
+              current emergency medical infrastructure isn't designed for them:
+              field care is either adapted from human protocols or requires
+              immediate veterinary transport. Nevada Operational Canine Medical
+              Group is a specialized response system designed and built for
+              real-world K9 emergencies.
+            </p>
+          </div>
+        </div>
+        <div ref={triggerRef}>
+          <div className="min-h-[100dvh] p-8 flex items-center justify-start">
+            <div className="flex-1">
+              <h1 className="max-w-[174px]">Services and Events</h1>
+            </div>
+            <div className="flex-1 flex flex-col gap-12">
+              <div className="flex gap-8">
+                <Link
+                  href="#"
+                  className="font-public-sans text-[24px] underline leading-[28px]"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="#"
+                  className="font-public-sans text-[24px] underline leading-[28px] text-gray-300"
+                >
+                  Events
+                </Link>
+              </div>
+              <div className="flex-1 flex flex-col gap-[10px]">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Card key={index}>
+                    <CardHeader>
+                      <CardTitle>Card Title</CardTitle>
+                      <CardDescription>Card Description</CardDescription>
+                    </CardHeader>
+                  </Card>
+                ))}
+                <Button className="h-[94px]">View more</Button>
+              </div>
+            </div>
+          </div>
+          <div className="min-h-[100dvh] p-8 flex justify-start items-center">
+            <div className="flex-1">
+              <h1>K9 Bios</h1>
+            </div>
+            <div className="flex-2 grid grid-cols-3 grid-rows-2 gap-[10px]">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Card key={index} className="h-[150px]">
+                  <CardHeader>
+                    <CardTitle>Dog name</CardTitle>
+                  </CardHeader>
+                </Card>
+              ))}
+              <Button className="h-[150px]">See more</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`bg-blue-400 h-[100dvh] fixed right-0 top-0 transition-all duration-700 ease-in-out ${
+          isExpanded ? "w-1/3" : "w-1/2"
+        }`}
+      >
+        <Carousel
+          orientation="vertical"
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}
+          className="h-full w-full"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <CarouselContent className="h-[100dvh]">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <CarouselItem key={index}>
+                <div className="bg-green-400 h-[100dvh] w-full">
+                  <span className="text-3xl font-semibold">{index + 1}</span>
+                  Test
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </div>
+      <Footer />
     </div>
   );
 }
