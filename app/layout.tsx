@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Nevada Operational Canine Medical Group",

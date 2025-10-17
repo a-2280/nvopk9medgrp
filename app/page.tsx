@@ -1,7 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import DogCarousel from "@/components/DogCarousel";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,9 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import DogCarousel from "@/components/DogCarousel";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 import { client } from "@/lib/sanity.client";
 import type { Dog } from "@/types/sanity";
 

@@ -1,13 +1,13 @@
 "use client";
 
+import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import Image from "next/image";
 import type { Dog } from "@/types/sanity";
 
 interface DogCarouselProps {
