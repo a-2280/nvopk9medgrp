@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { ModeToggle } from "./ModeToggle";
+import { Button } from "./ui/button";
 
 interface NavbarProps {
   isExpanded?: boolean;
@@ -28,13 +29,19 @@ export default function Navbar({ isExpanded = false }: NavbarProps) {
         <div style={{ width: 151, height: 38 }} />
         <ul className="flex gap-4">
           <li>
-            <Link href="#">Contact</Link>
+            <Button variant="link" className="bg-transparent border-none p-0">
+              Contact
+            </Button>
           </li>
           <li>
-            <Link href="#">Services</Link>
+            <Button variant="link" className="bg-transparent border-none p-0">
+              Services
+            </Button>
           </li>
           <li>
-            <Link href="#">K9 Teams</Link>
+            <Button variant="link" className="bg-transparent border-none p-0">
+              K9 Teams
+            </Button>
           </li>
         </ul>
       </nav>
@@ -57,13 +64,19 @@ export default function Navbar({ isExpanded = false }: NavbarProps) {
         <ModeToggle />
         <ul className="flex gap-4">
           <li>
-            <Link href="#">Contact</Link>
+            <Button variant="link" className="bg-transparent border-none p-0">
+              Contact
+            </Button>
           </li>
           <li>
-            <Link href="#">Services</Link>
+            <Button variant="link" className="bg-transparent border-none p-0">
+              Services
+            </Button>
           </li>
           <li>
-            <Link href="#">K9 Teams</Link>
+            <Button variant="link" className="bg-transparent border-none p-0">
+              K9 Teams
+            </Button>
           </li>
         </ul>
       </div>

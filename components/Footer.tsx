@@ -12,8 +12,12 @@ export default function Footer() {
         className="invisible"
       />
       <div className="h-full flex gap-8">
-        <Button className="flex-1 h-full">Contact us</Button>
-        <Button className="flex-1 h-full">Donate</Button>
+        <Button className="flex-1 h-full text-[32px] font-medium">
+          Contact us
+        </Button>
+        <Button className="flex-1 h-full text-[32px] font-medium">
+          Donate
+        </Button>
       </div>
     </footer>
   );

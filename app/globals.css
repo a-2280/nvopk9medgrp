@@ -130,7 +130,7 @@
     @apply font-public-sans text-[32px] font-bold leading-[38px];
   }
   a {
-    @apply font-inter text-[16px] underline;
+    @apply font-inter text-[16px];
   }
   button {
     @apply font-inter text-[16px] bg-black text-white px-4 py-2 rounded-[5px] border-2 border-transparent hover:bg-white hover:border-2 hover:border-black hover:text-black;

@@ -1,25 +1,23 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Navbar from "@/components/Navbar";
-import { Button } from "@/components/ui/button";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import DogCarousel from "@/components/DogCarousel";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import { client } from "@/lib/sanity.client";
+import type { Dog } from "@/types/sanity";
 
 export default function Home() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [dogs, setDogs] = useState<Dog[]>([]);
   const triggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,6 +39,25 @@ export default function Home() {
         observer.unobserve(triggerRef.current);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    async function fetchDogs() {
+      const query = `*[_type == "dogs"] | order(_createdAt desc) {
+        _id,
+        k9,
+        officer,
+        images[] {
+          asset-> {
+            _id,
+            url
+          }
+        }
+      }`;
+      const data = await client.fetch<Dog[]>(query);
+      setDogs(data);
+    }
+    fetchDogs();
   }, []);
 
   return (
@@ -123,7 +140,7 @@ export default function Home() {
             <div className="flex-2 grid grid-cols-3 grid-rows-2 gap-[10px]">
               {Array.from({ length: 5 }).map((_, index) => (
                 <Card key={index} className="h-[150px]">
-                  <CardHeader>
+                  <CardHeader className="h-full w-full flex justify-center items-center">
                     <CardTitle>Dog name</CardTitle>
                   </CardHeader>
                 </Card>
@@ -133,32 +150,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div
-        className={`bg-blue-400 h-[100dvh] fixed right-0 top-0 transition-all duration-700 ease-in-out ${
-          isExpanded ? "w-1/3" : "w-1/2"
-        }`}
-      >
-        <Carousel
-          orientation="vertical"
-          plugins={[
-            Autoplay({
-              delay: 2000,
-            }),
-          ]}
-          className="h-full w-full"
-        >
-          <CarouselContent className="h-[100dvh]">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem key={index}>
-                <div className="bg-green-400 h-[100dvh] w-full">
-                  <span className="text-3xl font-semibold">{index + 1}</span>
-                  Test
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-      </div>
+      <DogCarousel isExpanded={isExpanded} dogs={dogs} />
       <Footer />
     </div>
   );
