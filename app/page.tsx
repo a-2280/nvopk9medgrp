@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import { client } from "@/lib/sanity.client";
 import type { Dog } from "@/types/sanity";
+import DonationModal from "@/components/DonationModal";
 
 export default function Home() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -27,7 +28,7 @@ export default function Home() {
       },
       {
         threshold: 0.25, // Trigger when 10% of the element is visible
-      },
+      }
     );
 
     if (triggerRef.current) {
@@ -74,7 +75,29 @@ export default function Home() {
             <h1 className="text-[52.75px] max-w-[447px] leading-[62px]">
               Protecting Those Who Protect Us
             </h1>
-            <Button>Donate</Button>
+            {/*
+              DONATION MODAL
+
+              This modal allows users to choose their donation amount.
+              When user clicks "Donate Now", a modal opens with:
+              - Preset amount buttons ($25, $50, $100, $250)
+              - Custom amount input field
+              - Stripe payment form
+
+              CUSTOMIZATION:
+              - buttonText: Change the button text (default: "Donate")
+              - buttonClassName: Add custom Tailwind classes
+              - defaultAmount: Initial selected amount (default: $50)
+              - presetAmounts: Array of preset buttons (default: [25, 50, 100, 250])
+
+              HOW IT WORKS:
+              1. User selects or enters amount
+              2. Payment form appears with selected amount
+              3. User enters card details
+              4. Payment processes
+              5. Redirects to success page
+            */}
+            <DonationModal buttonText="Donate" buttonClassName="" />
           </div>
           <div className="max-w-[400px] flex flex-col gap-[10px]">
             <p className="text-[#707070] text-[14px] font-light">

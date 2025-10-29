@@ -14,8 +14,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="antiallias">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className=" no-scrollbar no-scrollbar"
+    >
+      <body className="antiallias overflow-x-hidden">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
