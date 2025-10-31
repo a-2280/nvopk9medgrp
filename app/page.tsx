@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import DogCarousel from "@/components/DogCarousel";
+import DonationModal from "@/components/DonationModal";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,6 @@ import {
 } from "@/components/ui/card";
 import { client } from "@/lib/sanity.client";
 import type { Dog } from "@/types/sanity";
-import DonationModal from "@/components/DonationModal";
 
 export default function Home() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -75,29 +75,9 @@ export default function Home() {
             <h1 className="text-[52.75px] max-w-[447px] leading-[62px]">
               Protecting Those Who Protect Us
             </h1>
-            {/*
-              DONATION MODAL
-
-              This modal allows users to choose their donation amount.
-              When user clicks "Donate Now", a modal opens with:
-              - Preset amount buttons ($25, $50, $100, $250)
-              - Custom amount input field
-              - Stripe payment form
-
-              CUSTOMIZATION:
-              - buttonText: Change the button text (default: "Donate")
-              - buttonClassName: Add custom Tailwind classes
-              - defaultAmount: Initial selected amount (default: $50)
-              - presetAmounts: Array of preset buttons (default: [25, 50, 100, 250])
-
-              HOW IT WORKS:
-              1. User selects or enters amount
-              2. Payment form appears with selected amount
-              3. User enters card details
-              4. Payment processes
-              5. Redirects to success page
-            */}
-            <DonationModal buttonText="Donate" buttonClassName="" />
+            <DonationModal>
+              <Button>Donate</Button>
+            </DonationModal>
           </div>
           <div className="max-w-[400px] flex flex-col gap-[10px]">
             <p className="text-[#707070] text-[14px] font-light">
