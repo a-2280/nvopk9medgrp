@@ -14,12 +14,17 @@ export async function GET(req: Request) {
 
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
+    console.log("Session ID:", sessionId);
+    console.log("Session amount_total:", session.amount_total);
+    console.log("Session status:", session.status);
+
     return NextResponse.json({
       status: session.status,
       amount_total: session.amount_total,
       currency: session.currency,
     });
   } catch (error: any) {
+    console.error("Error retrieving session:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

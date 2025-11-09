@@ -19,12 +19,17 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
 
-export default function DonationModal({ children }: { children: React.ReactNode }) {
+export default function DonationModal({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [amount, setAmount] = useState("");
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
 
   const createSession = async (amountInCents: number) => {
     setLoading(true);
@@ -51,6 +56,8 @@ export default function DonationModal({ children }: { children: React.ReactNode 
   };
 
   const handlePresetAmount = (cents: number) => {
+    setSelectedAmount(cents);
+    setAmount("");
     createSession(cents);
   };
 
@@ -60,13 +67,25 @@ export default function DonationModal({ children }: { children: React.ReactNode 
       setError("Enter at least $1");
       return;
     }
-    createSession(Math.round(dollars * 100));
+    const amountInCents = Math.round(dollars * 100);
+    setSelectedAmount(amountInCents);
+    createSession(amountInCents);
+  };
+
+  const handleOpenChange = (isOpen: boolean) => {
+    setOpen(isOpen);
+    if (!isOpen) {
+      setSelectedAmount(null);
+      setAmount("");
+      setError("");
+      setClientSecret("");
+    }
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="max-w-[600px] max-h-[92dvh] overflow-scroll no-scrollbar">
         <DialogHeader>
           <DialogTitle>Support K9 Medical Care</DialogTitle>
           <DialogDescription>
@@ -84,10 +103,16 @@ export default function DonationModal({ children }: { children: React.ReactNode 
             <Button onClick={() => handlePresetAmount(5000)} disabled={loading}>
               $50
             </Button>
-            <Button onClick={() => handlePresetAmount(10000)} disabled={loading}>
+            <Button
+              onClick={() => handlePresetAmount(10000)}
+              disabled={loading}
+            >
               $100
             </Button>
-            <Button onClick={() => handlePresetAmount(25000)} disabled={loading}>
+            <Button
+              onClick={() => handlePresetAmount(25000)}
+              disabled={loading}
+            >
               $250
             </Button>
           </div>
@@ -102,7 +127,7 @@ export default function DonationModal({ children }: { children: React.ReactNode 
               disabled={loading}
             />
             <Button onClick={handleCustomAmount} disabled={loading || !amount}>
-              Donate
+              Set Amount
             </Button>
           </div>
 
@@ -113,9 +138,9 @@ export default function DonationModal({ children }: { children: React.ReactNode 
           {error && <p className="text-red-500 text-sm">{error}</p>}
 
           {/* Checkout Form */}
-          {clientSecret && (
+          {clientSecret && selectedAmount && (
             <CheckoutProvider stripe={stripePromise} options={{ clientSecret }}>
-              <CheckoutForm />
+              <CheckoutForm selectedAmount={selectedAmount} />
             </CheckoutProvider>
           )}
         </div>

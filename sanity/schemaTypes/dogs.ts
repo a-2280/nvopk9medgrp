@@ -34,11 +34,15 @@ export const dogs = defineType({
       },
       validation: (Rule) => Rule.min(1).error("At least one image is required"),
     }),
+    defineField({
+      name: "bio",
+      title: "Bio",
+      type: "text",
+    }),
   ],
   preview: {
     select: {
       title: "k9",
-      media: "images.0",
     },
   },
 });

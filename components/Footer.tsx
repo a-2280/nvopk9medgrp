@@ -1,7 +1,12 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
+import DonationModal from "./DonationModal";
 
-export default function Footer() {
+interface FooterProps {
+  onOpenContact?: () => void;
+}
+
+export default function Footer({ onOpenContact }: FooterProps) {
   return (
     <footer className="relative z-20 h-[100dvh] w-screen p-8 flex flex-col gap-8 bg-background">
       <Image
@@ -12,12 +17,14 @@ export default function Footer() {
         className="invisible"
       />
       <div className="h-full flex gap-8">
-        <Button className="flex-1 h-full text-[32px] font-medium">
+        <Button className="flex-1 h-full text-[32px] font-medium" onClick={onOpenContact}>
           Contact us
         </Button>
-        <Button className="flex-1 h-full text-[32px] font-medium">
-          Donate
-        </Button>
+        <DonationModal>
+          <Button className="flex-1 h-full text-[32px] font-medium">
+            Donate
+          </Button>
+        </DonationModal>
       </div>
     </footer>
   );

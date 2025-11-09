@@ -5,7 +5,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({
+  selectedAmount,
+}: {
+  selectedAmount: number;
+}) {
   const checkout = useCheckout();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -58,7 +62,9 @@ export default function CheckoutForm() {
       <PaymentElement />
       {error && <p className="text-red-500 text-sm">{error}</p>}
       <Button type="submit" disabled={submitting} className="w-full">
-        {submitting ? "Processing..." : "Complete Donation"}
+        {submitting
+          ? "Processing..."
+          : `Complete Donation ($${(selectedAmount / 100).toFixed(2)})`}
       </Button>
     </form>
   );

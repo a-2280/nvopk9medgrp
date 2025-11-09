@@ -8,9 +8,10 @@ import { Button } from "./ui/button";
 
 interface NavbarProps {
   isExpanded?: boolean;
+  onOpenContact?: () => void;
 }
 
-export default function Navbar({ isExpanded = false }: NavbarProps) {
+export default function Navbar({ isExpanded = false, onOpenContact }: NavbarProps) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -28,7 +29,7 @@ export default function Navbar({ isExpanded = false }: NavbarProps) {
         <div style={{ width: 151, height: 38 }} />
         <ul className="flex gap-4">
           <li>
-            <Button variant="link" className="bg-transparent border-none p-0">
+            <Button variant="link" className="bg-transparent border-none p-0" onClick={onOpenContact}>
               Contact
             </Button>
           </li>
@@ -61,9 +62,9 @@ export default function Navbar({ isExpanded = false }: NavbarProps) {
       />
       <div className="flex gap-8 justify-center items-center">
         <ModeToggle />
-        <ul className="flex gap-4">
+        <ul className="flex gap-3">
           <li>
-            <Button variant="link" className="bg-transparent border-none p-0">
+            <Button variant="link" className="bg-transparent border-none p-0" onClick={onOpenContact}>
               Contact
             </Button>
           </li>

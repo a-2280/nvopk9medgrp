@@ -11,11 +11,11 @@ import {
 import type { Dog } from "@/types/sanity";
 
 interface DogCarouselProps {
-  isExpanded: boolean;
+  isExpanded?: boolean;
   dogs: Dog[];
 }
 
-export default function DogCarousel({ isExpanded, dogs }: DogCarouselProps) {
+export default function DogCarousel({ isExpanded = false, dogs }: DogCarouselProps) {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const autoplayRef = useRef(Autoplay({ delay: 2000 }));
 
