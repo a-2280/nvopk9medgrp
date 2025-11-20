@@ -70,7 +70,7 @@ export default function Navbar({
   if (!mounted) {
     return (
       <nav
-        className={`fixed ${isBannerVisible ? "top-0 lg:top-10" : "top-0"} flex justify-between items-center p-8 transition-all duration-700 ease-in-out z-50 ${
+        className={`fixed ${isBannerVisible ? "top-0 lg:top-10" : "top-0"} flex justify-between items-center p-8 pt-4 lg:pt-8 transition-all duration-700 ease-in-out z-50 w-full ${
           isExpanded ? "w-2/3" : "w-1/2"
         }`}
       >
@@ -101,7 +101,7 @@ export default function Navbar({
 
   return (
     <nav
-      className={`fixed ${isBannerVisible ? "top-0 lg:top-10" : "top-0"} flex justify-between items-center p-8 pt-2 lg:pt-8 transition-all duration-700 ease-in-out z-50 w-full ${
+      className={`fixed ${isBannerVisible ? "top-0 lg:top-10" : "top-0"} flex justify-between items-center p-8 pt-4 lg:pt-8 transition-all duration-700 ease-in-out z-50 w-full ${
         isExpanded ? "lg:w-2/3" : "lg:w-1/2"
       }`}
     >
