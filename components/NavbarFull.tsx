@@ -104,15 +104,19 @@ export default function NavbarFull({ onOpenContact }: NavbarFullProps = {}) {
         </ul>
       </div>
       <div className="lg:hidden">
-        <button
-          type="button"
-          className="m-0 p-0 bg-transparent"
-          onClick={() => setIsMobileMenuOpen(true)}
-        >
-          <Menu
-            className={resolvedTheme === "dark" ? "text-white" : "text-black"}
-          />
-        </button>
+        {mounted ? (
+          <button
+            type="button"
+            className="m-0 p-0 bg-transparent"
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
+            <Menu
+              className={resolvedTheme === "dark" ? "text-white" : "text-black"}
+            />
+          </button>
+        ) : (
+          <div style={{ width: 24, height: 24 }} />
+        )}
       </div>
       {isMobileMenuOpen && (
         <MobileMenu
