@@ -66,7 +66,7 @@ export default function NavbarFull({ onOpenContact }: NavbarFullProps = {}) {
 
   return (
     <nav
-      className={`fixed lg:static ${isBannerVisible ? "lg:pt-15" : ""} top-0 left-0 w-full flex justify-between items-center p-8 pt-4 lg:pt-8 z-50 bg-amber-400`}
+      className={`fixed lg:static ${isBannerVisible ? "lg:pt-15" : ""} top-0 left-0 w-full flex justify-between items-center p-8 pt-4 lg:pt-8 z-50`}
     >
       <Link href="/">
         {mounted ? (
