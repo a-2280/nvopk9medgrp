@@ -70,7 +70,7 @@ export default function Navbar({
   if (!mounted) {
     return (
       <nav
-        className={`fixed ${isBannerVisible ? "top-10" : "top-0"} flex justify-between items-center p-8 transition-all duration-700 ease-in-out z-50 ${
+        className={`fixed ${isBannerVisible ? "top-0 lg:top-10" : "top-0"} flex justify-between items-center p-8 transition-all duration-700 ease-in-out z-50 ${
           isExpanded ? "w-2/3" : "w-1/2"
         }`}
       >
