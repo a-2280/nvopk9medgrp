@@ -22,26 +22,9 @@ export default function NavbarFull({ onOpenContact }: NavbarFullProps = {}) {
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [dogs, setDogs] = useState<SanityDocument[]>([]);
-  const [isBannerVisible, setIsBannerVisible] = useState(true);
 
   useEffect(() => {
     setMounted(true);
-
-    // Check if banner was previously closed
-    const bannerClosed = localStorage.getItem("topBannerClosed");
-    if (bannerClosed === "true") {
-      setIsBannerVisible(false);
-    }
-
-    // Listen for banner close event
-    const handleBannerClose = () => {
-      setIsBannerVisible(false);
-    };
-    window.addEventListener("bannerClosed", handleBannerClose);
-
-    return () => {
-      window.removeEventListener("bannerClosed", handleBannerClose);
-    };
   }, []);
 
   useEffect(() => {
@@ -65,7 +48,7 @@ export default function NavbarFull({ onOpenContact }: NavbarFullProps = {}) {
   };
 
   return (
-    <nav className={`fixed lg:static ${isBannerVisible ? "top-0 lg:top-10" : "top-0"} left-0 w-full flex justify-between items-center p-8 z-50`}>
+    <nav className="fixed lg:static top-0 left-0 w-full flex justify-between items-center p-8 z-50">
       <Link href="/">
         {mounted ? (
           <Image
