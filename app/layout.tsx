@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
 import Providers from "@/components/Providers";
+import TopBanner from "@/components/TopBanner";
 
 export const metadata: Metadata = {
   title: "Nevada Operational Canine Medical Group",
@@ -21,6 +21,7 @@ export default function RootLayout({
       className=" no-scrollbar no-scrollbar"
     >
       <body className="antiallias overflow-x-hidden">
+        <TopBanner />
         <Providers>{children}</Providers>
       </body>
     </html>

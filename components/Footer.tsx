@@ -16,8 +16,11 @@ export default function Footer({ onOpenContact }: FooterProps) {
         height={38}
         className="invisible"
       />
-      <div className="h-full flex gap-8">
-        <Button className="flex-1 h-full text-[32px] font-medium" onClick={onOpenContact}>
+      <div className="h-full flex flex-col lg:flex-row gap-8">
+        <Button
+          className="flex-1 h-full text-[32px] font-medium"
+          onClick={onOpenContact}
+        >
           Contact us
         </Button>
         <DonationModal>

@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { XIcon } from "lucide-react";
 
 interface ContactFormProps {
   onClose?: () => void;
@@ -41,7 +42,7 @@ export default function ContactForm({ onClose }: ContactFormProps) {
       className="bg-black/50 w-screen h-[100dvh] fixed top-0 left-0 flex justify-center items-center z-50"
       onClick={handleBackdropClick}
     >
-      <div className="w-full max-w-md bg-background rounded-lg p-6 shadow-lg">
+      <div className="w-full max-w-screen h-[100dvh] lg:h-fit lg:max-w-md bg-background rounded-lg p-6 shadow-lg flex flex-col justify-center">
         <form onSubmit={handleSubmit}>
           <FieldGroup>
             <FieldSet>
@@ -52,9 +53,14 @@ export default function ContactForm({ onClose }: ContactFormProps) {
                     Get in touch with Nevada Operational K9 Medical Group
                   </FieldDescription>
                 </div>
-                <Button type="button" onClick={onClose}>
-                  X
-                </Button>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="ring-offset-background focus:ring-ring rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 h-fit self-start"
+                >
+                  <XIcon />
+                  <span className="sr-only">Close</span>
+                </button>
               </div>
               <FieldGroup>
                 <Field>

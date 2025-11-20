@@ -39,9 +39,7 @@ export default function Hero() {
         <p className="text-[#707070] text-[14px] font-light">
           {hero?.descriptionTitle}
         </p>
-        <p>
-          {hero?.description}
-        </p>
+        <p>{hero?.description}</p>
       </div>
     </div>
   );

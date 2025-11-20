@@ -31,7 +31,7 @@ export default function TeamMember({
             className="rounded-lg"
           />
         )}
-        <div className="text-center">{member.bio}</div>
+        <div className="hidden lg:block text-center">{member.bio}</div>
       </div>
     </div>
   );

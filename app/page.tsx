@@ -36,7 +36,7 @@ export default function Home() {
 
         lastY = currentY;
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (meetTeamRef.current) {
@@ -70,13 +70,16 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-screen flex flex-col">
+    <div className="w-screen flex flex-col overflow-x-hidden">
       <div
-        className={`flex flex-col justify-between transition-all duration-700 ease-in-out ${
-          isExpanded ? "w-2/3" : "w-1/2"
+        className={`overflow-x-hidden flex flex-col justify-between transition-all duration-700 ease-in-out ${
+          isExpanded ? "lg:w-2/3" : "lg:w-1/2"
         }`}
       >
-        <Navbar isExpanded={isExpanded} onOpenContact={() => setIsContactFormOpen(true)} />
+        <Navbar
+          isExpanded={isExpanded}
+          onOpenContact={() => setIsContactFormOpen(true)}
+        />
         <Hero />
         <GeneralAbout />
         <div ref={meetTeamRef}>
@@ -86,7 +89,9 @@ export default function Home() {
       </div>
       <DogCarousel isExpanded={isExpanded} dogs={dogs} />
       <Footer onOpenContact={() => setIsContactFormOpen(true)} />
-      {isContactFormOpen && <ContactForm onClose={() => setIsContactFormOpen(false)} />}
+      {isContactFormOpen && (
+        <ContactForm onClose={() => setIsContactFormOpen(false)} />
+      )}
     </div>
   );
 }

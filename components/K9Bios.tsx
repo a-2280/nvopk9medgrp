@@ -41,11 +41,11 @@ export default function K0Bios() {
   };
 
   return (
-    <div className="min-h-[100dvh] p-8 flex justify-start items-center">
-      <div className="flex-1">
+    <div className="min-h-[100dvh] p-8 flex flex-col lg:flex-row justify-start items-stretch lg:items-center">
+      <div className="flex-1 pt-24 lg:p-0">
         <h1>K9 Bios</h1>
       </div>
-      <div className="flex-2 grid grid-cols-3 grid-rows-2 gap-[10px]">
+      <div className="flex-2 grid grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-[10px]">
         {dogs.map((dog) => (
           <Card
             key={dog._id}

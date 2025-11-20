@@ -24,9 +24,7 @@ export default function GeneralAbout() {
     <div className="min-h-[100dvh] p-8 flex flex-col justify-center">
       <div className="flex flex-col gap-4">
         <h1 className="max-w-[278px]">{about?.title}</h1>
-        <p className="max-w-[465px]">
-          {about?.description}
-        </p>
+        <p className="max-w-[465px]">{about?.description}</p>
       </div>
     </div>
   );

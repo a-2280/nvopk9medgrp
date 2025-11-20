@@ -15,7 +15,10 @@ interface DogCarouselProps {
   dogs: Dog[];
 }
 
-export default function DogCarousel({ isExpanded = false, dogs }: DogCarouselProps) {
+export default function DogCarousel({
+  isExpanded = false,
+  dogs,
+}: DogCarouselProps) {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const autoplayRef = useRef(Autoplay({ delay: 2000 }));
 
@@ -41,7 +44,7 @@ export default function DogCarousel({ isExpanded = false, dogs }: DogCarouselPro
 
   return (
     <div
-      className={` h-[100dvh] fixed right-0 top-0 transition-all duration-700 ease-in-out ${
+      className={`hidden lg:block h-[100dvh] fixed right-0 top-0 transition-all duration-700 ease-in-out ${
         isExpanded ? "w-1/3" : "w-1/2"
       }`}
     >

@@ -16,7 +16,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
 );
 
 export default function DonationModal({
@@ -85,7 +85,7 @@ export default function DonationModal({
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-w-[600px] max-h-[92dvh] overflow-scroll no-scrollbar">
+      <DialogContent className="w-full min-h-[250px] max-h-[100dvh] lg:max-w-[600px] lg:max-h-[92dvh] overflow-scroll no-scrollbar">
         <DialogHeader>
           <DialogTitle>Support K9 Medical Care</DialogTitle>
           <DialogDescription>

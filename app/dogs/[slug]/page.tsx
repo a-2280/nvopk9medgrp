@@ -32,7 +32,7 @@ export default function DogPage({
       setAllDogs(data);
 
       const currentDog = data.find(
-        (d) => d.k9.toLowerCase().replace(/\s+/g, "-") === slug
+        (d) => d.k9.toLowerCase().replace(/\s+/g, "-") === slug,
       );
       setDog(currentDog || null);
       setCurrentImageIndex(0);
@@ -78,8 +78,8 @@ export default function DogPage({
   };
 
   return (
-    <div className="w-full h-full flex justify-center items-center gap-8 max-w-[1400px] mx-auto">
-      <div className="flex-1 flex justify-center items-center gap-4">
+    <div className="w-full h-[100dvh] lg:h-full flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-8 max-w-[1400px] mx-auto pt-24 lg:pt-0 pb-8 lg:pb-0">
+      <div className="lg:flex-1 flex justify-center items-center gap-4">
         <Button
           variant="secondary"
           size="icon"
@@ -100,8 +100,8 @@ export default function DogPage({
           <ChevronRight className="h-6 w-6" />
         </Button>
       </div>
-      <div className="flex-1 flex flex-col items-center justify-center gap-4">
-        <div className="relative w-[500px] h-[600px] bg-background">
+      <div className="lg:flex-1 flex flex-col items-center justify-center gap-4">
+        <div className="relative w-[300px] h-[400px] lg:w-[500px] lg:h-[600px] bg-background">
           {images[currentImageIndex] && (
             <Image
               src={urlFor(images[currentImageIndex]).url()}
@@ -130,7 +130,7 @@ export default function DogPage({
           </Button>
         </div>
       </div>
-      <p className="flex-1 max-w-[400px] max-h-[600px] overflow-scroll no-scrollbar">
+      <p className="flex-1 max-w-[400px] max-h-[500px] overflow-scroll no-scrollbar hidden lg:block">
         {dog.bio}
       </p>
     </div>

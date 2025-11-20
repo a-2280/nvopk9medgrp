@@ -15,10 +15,15 @@ export const structure: StructureResolver = (S) =>
         .title("About Section")
         .id("about")
         .child(S.document().schemaType("about").documentId("about")),
+      // Singleton for banner
+      S.listItem()
+        .title("Donation Banner")
+        .id("banner")
+        .child(S.document().schemaType("banner").documentId("banner")),
       // Divider
       S.divider(),
       // All other document types
       ...S.documentTypeListItems().filter(
-        (item) => item.getId() !== "hero" && item.getId() !== "about"
+        (item) => item.getId() !== "hero" && item.getId() !== "about" && item.getId() !== "banner",
       ),
     ]);
